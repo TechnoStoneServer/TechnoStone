@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TechnoStone — Minecraft сервер</title>
     <style>
+        /* --- Твои стили (здесь всё то же самое, что мы настраивали) --- */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Arial, sans-serif;
         }
-        
         body {
             background: linear-gradient(135deg, #0b0c14 0%, #1a1f2f 100%);
             min-height: 100vh;
@@ -22,15 +22,12 @@
             position: relative;
             overflow-x: hidden;
         }
-        
-        /* Анимированный фон с частицами */
         .particles {
             position: fixed;
             width: 100%;
             height: 100%;
             z-index: -1;
         }
-        
         .particle {
             position: absolute;
             width: 4px;
@@ -39,32 +36,18 @@
             border-radius: 50%;
             animation: float 15s infinite linear;
         }
-        
         @keyframes float {
-            0% {
-                transform: translateY(100vh) translateX(0);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100vh) translateX(100px);
-                opacity: 0;
-            }
+            0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
         }
-        
         .container {
             max-width: 1200px;
             padding: 20px;
             position: relative;
             z-index: 1;
         }
-        
-        /* Меню навигации */
         .nav {
             display: flex;
             gap: 30px;
@@ -72,7 +55,6 @@
             margin-bottom: 100px;
             flex-wrap: wrap;
         }
-        
         .nav a {
             color: #8f9bb5;
             text-decoration: none;
@@ -83,26 +65,26 @@
             padding: 8px 16px;
             border-radius: 30px;
         }
-        
         .nav a:hover {
             color: #ffffff;
             background: rgba(122, 162, 247, 0.15);
             transform: translateY(-2px);
         }
-        
+        .nav .active {
+            color: #ffffff;
+            background: rgba(122, 162, 247, 0.25);
+            border-bottom: 2px solid #7aa2f7;
+        }
         .nav .login {
             background: linear-gradient(135deg, #7aa2f7, #9d7bf7);
             color: white;
             padding: 8px 24px;
         }
-        
         .nav .login:hover {
             background: linear-gradient(135deg, #8bb2ff, #ad8cff);
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(122, 162, 247, 0.4);
         }
-        
-        /* Главный контент */
         .content {
             text-align: center;
             background: rgba(20, 25, 40, 0.6);
@@ -114,8 +96,6 @@
             position: relative;
             overflow: hidden;
         }
-        
-        /* Декоративная линия сверху */
         .content::before {
             content: '';
             position: absolute;
@@ -126,16 +106,10 @@
             background: linear-gradient(90deg, transparent, #7aa2f7, #bb9af7, #7aa2f7, transparent);
             animation: scan 3s ease-in-out infinite;
         }
-        
         @keyframes scan {
-            0% {
-                transform: translateX(-100%);
-            }
-            100% {
-                transform: translateX(100%);
-            }
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
         }
-        
         h1 {
             font-size: 80px;
             font-weight: 900;
@@ -147,16 +121,10 @@
             letter-spacing: 2px;
             animation: glow 3s ease-in-out infinite;
         }
-        
         @keyframes glow {
-            0%, 100% {
-                text-shadow: 0 0 30px rgba(122, 162, 247, 0.5);
-            }
-            50% {
-                text-shadow: 0 0 60px rgba(122, 162, 247, 0.8);
-            }
+            0%, 100% { text-shadow: 0 0 30px rgba(122, 162, 247, 0.5); }
+            50% { text-shadow: 0 0 60px rgba(122, 162, 247, 0.8); }
         }
-        
         .subtitle {
             font-size: 22px;
             color: #b1c3df;
@@ -168,13 +136,10 @@
             font-weight: 300;
             text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
         }
-        
-        /* Кнопка Начать играть - Discord стиль */
         .button-wrapper {
             position: relative;
             display: inline-block;
         }
-        
         .button-wrapper::before {
             content: '';
             position: absolute;
@@ -189,18 +154,10 @@
             animation: pulse 2s ease-in-out infinite;
             z-index: -1;
         }
-        
         @keyframes pulse {
-            0%, 100% {
-                opacity: 0.3;
-                transform: scale(1);
-            }
-            50% {
-                opacity: 0.7;
-                transform: scale(1.1);
-            }
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.1); }
         }
-        
         .discord-button {
             background: linear-gradient(135deg, #5865F2, #7c4dff);
             border: none;
@@ -220,7 +177,6 @@
             position: relative;
             overflow: hidden;
         }
-        
         .discord-button::before {
             content: '';
             position: absolute;
@@ -231,30 +187,23 @@
             background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
             transition: left 0.5s;
         }
-        
         .discord-button:hover::before {
             left: 100%;
         }
-        
         .discord-button:hover {
             background: linear-gradient(135deg, #6370e6, #8a5df5);
             transform: translateY(-5px) scale(1.05);
             box-shadow: 0 20px 45px rgba(88, 101, 242, 0.7);
         }
-        
         .discord-button:active {
             transform: translateY(0) scale(1);
         }
-        
-        /* Иконка Discord */
         .discord-button::after {
             content: "▶";
             margin-left: 15px;
             font-size: 22px;
             filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.3));
         }
-        
-        /* Статистика */
         .stats {
             display: flex;
             justify-content: center;
@@ -262,11 +211,9 @@
             margin-top: 60px;
             flex-wrap: wrap;
         }
-        
         .stat-item {
             text-align: center;
         }
-        
         .stat-number {
             font-size: 36px;
             font-weight: 800;
@@ -275,7 +222,6 @@
             -webkit-text-fill-color: transparent;
             line-height: 1;
         }
-        
         .stat-label {
             color: #8f9bb5;
             font-size: 14px;
@@ -283,8 +229,6 @@
             letter-spacing: 2px;
             margin-top: 8px;
         }
-        
-        /* Декоративные элементы */
         .glow-circle {
             position: fixed;
             width: 500px;
@@ -292,105 +236,61 @@
             border-radius: 50%;
             z-index: -1;
         }
-        
         .circle-1 {
             top: -200px;
             left: -200px;
             background: radial-gradient(circle, rgba(122, 162, 247, 0.3) 0%, transparent 70%);
             animation: rotate 40s linear infinite;
         }
-        
         .circle-2 {
             bottom: -200px;
             right: -200px;
             background: radial-gradient(circle, rgba(187, 154, 247, 0.3) 0%, transparent 70%);
             animation: rotate 30s linear infinite reverse;
         }
-        
         @keyframes rotate {
-            from {
-                transform: rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg);
-            }
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
-        
-        /* Адаптация под мобильные */
         @media (max-width: 768px) {
-            h1 {
-                font-size: 50px;
-            }
-            
-            .nav {
-                gap: 15px;
-                margin-bottom: 50px;
-            }
-            
-            .nav a {
-                font-size: 14px;
-                padding: 6px 12px;
-            }
-            
-            .content {
-                padding: 40px 20px;
-            }
-            
-            .discord-button {
-                font-size: 20px;
-                padding: 16px 40px;
-                width: 100%;
-            }
-            
-            .stats {
-                gap: 30px;
-                margin-top: 40px;
-            }
-            
-            .stat-number {
-                font-size: 28px;
-            }
+            h1 { font-size: 50px; }
+            .nav { gap: 15px; margin-bottom: 50px; }
+            .nav a { font-size: 14px; padding: 6px 12px; }
+            .content { padding: 40px 20px; }
+            .discord-button { font-size: 20px; padding: 16px 40px; width: 100%; }
+            .stats { gap: 30px; margin-top: 40px; }
+            .stat-number { font-size: 28px; }
         }
     </style>
 </head>
 <body>
-    <!-- Анимированный фон -->
     <div class="particles" id="particles"></div>
-    
-    <!-- Декоративные круги -->
     <div class="glow-circle circle-1"></div>
     <div class="glow-circle circle-2"></div>
-    
+
     <div class="container">
-        <!-- Навигационное меню -->
         <div class="nav">
-            <a href="#">index.html</a>
-            <a href="#">news.html</a>
-            <a href="#">donate.html</a>
-            <a href="#">rules.html</a>
-            <a href="#">wiki.html</a>
-            <a href="#" class="login">login.html →</a>
+            <a href="index.html" class="active">ГЛАВНАЯ</a>
+            <a href="news.html">НОВОСТИ</a>
+            <a href="donate.html">ДОНАТ</a>
+            <a href="rules.html">ПРАВИЛА</a>
+            <a href="wiki.html">ВИКИ</a>
+            <a href="login.html" class="login">ВХОД →</a>
         </div>
-        
-        <!-- Основной контент -->
+
         <div class="content">
             <h1>TechnoStone</h1>
             <div class="subtitle">
-                Место, где твоя игра в Minecraft станет действительно комфортной. 
+                Место, где твоя игра в Minecraft станет действительно комфортной.
                 Присоединяйся к огромному сообществу игроков!
             </div>
-            
-            <!-- Кнопка с анимацией -->
+
             <div class="button-wrapper">
-                <a href="https://discord.gg/UCfqjw3RBe" 
-                   class="discord-button" 
-                   target="_blank" 
-                   rel="noopener noreferrer">
+                <a href="https://discord.gg/UCfqjw3RBe" class="discord-button" target="_blank" rel="noopener noreferrer">
                     Начать играть
                 </a>
             </div>
-            
-            <!-- Статистика сервера -->
+
             <div class="stats">
                 <div class="stat-item">
                     <div class="stat-number">КОМФОРТ</div>
@@ -409,38 +309,24 @@
     </div>
 
     <script>
-        // Создание анимированных частиц на фоне
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
             const count = 30;
-            
             for (let i = 0; i < count; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
-                
-                // Случайные размеры
                 const size = Math.random() * 6 + 2;
                 particle.style.width = size + 'px';
                 particle.style.height = size + 'px';
-                
-                // Случайное положение
                 particle.style.left = Math.random() * 100 + '%';
-                
-                // Случайная задержка анимации
                 particle.style.animationDelay = Math.random() * 15 + 's';
-                
-                // Случайная продолжительность анимации
                 particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
-                
-                // Случайный цвет
                 const colors = ['#7aa2f7', '#bb9af7', '#9ece6a', '#e0af68'];
                 particle.style.background = colors[Math.floor(Math.random() * colors.length)];
                 particle.style.opacity = Math.random() * 0.5 + 0.2;
-                
                 particlesContainer.appendChild(particle);
             }
         }
-        
         createParticles();
     </script>
 </body>
