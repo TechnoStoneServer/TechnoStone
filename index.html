@@ -88,50 +88,40 @@
             margin-right: auto;
         }
         
-        /* Кнопка копирования IP */
-        .ip-container {
-            display: inline-flex;
-            align-items: center;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(122, 162, 247, 0.3);
-            border-radius: 60px;
-            padding: 5px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-        
-        .ip-text {
-            padding: 15px 30px;
-            font-size: 24px;
-            font-weight: 600;
-            color: white;
-            letter-spacing: 1px;
-            background: rgba(122, 162, 247, 0.1);
-            border-radius: 60px 0 0 60px;
-        }
-        
-        .copy-button {
-            background: #7aa2f7;
+        /* Кнопка Начать играть */
+        .discord-button {
+            background: #5865F2;  /* Цвет Discord */
             border: none;
             color: white;
-            font-size: 18px;
-            font-weight: 600;
-            padding: 15px 40px;
+            font-size: 24px;
+            font-weight: 700;
+            padding: 20px 60px;
             border-radius: 60px;
             cursor: pointer;
             transition: all 0.3s;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 5px 15px rgba(122, 162, 247, 0.4);
+            letter-spacing: 2px;
+            box-shadow: 0 10px 25px rgba(88, 101, 242, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: inline-block;
+            text-decoration: none;
         }
         
-        .copy-button:hover {
-            background: #6b94e0;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(122, 162, 247, 0.6);
+        .discord-button:hover {
+            background: #4752c4;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(88, 101, 242, 0.7);
         }
         
-        .copy-button:active {
+        .discord-button:active {
             transform: translateY(0);
+        }
+        
+        /* Иконка Discord (простой вариант) */
+        .discord-button::before {
+            content: "▶";
+            margin-right: 10px;
+            font-size: 20px;
         }
         
         /* Декоративные элементы */
@@ -157,6 +147,21 @@
             background: #bb9af7;
         }
         
+        /* IP адрес под кнопкой */
+        .ip-hint {
+            margin-top: 25px;
+            color: #a0a8c0;
+            font-size: 14px;
+        }
+        
+        .ip-hint span {
+            color: #7aa2f7;
+            font-weight: 600;
+            background: rgba(122, 162, 247, 0.1);
+            padding: 5px 10px;
+            border-radius: 8px;
+        }
+        
         /* Адаптация под мобильные */
         @media (max-width: 768px) {
             h1 {
@@ -168,18 +173,9 @@
                 margin-bottom: 40px;
             }
             
-            .ip-container {
-                flex-direction: column;
-                border-radius: 30px;
-            }
-            
-            .ip-text {
-                border-radius: 30px 30px 0 0;
-                text-align: center;
-            }
-            
-            .copy-button {
-                border-radius: 0 0 30px 30px;
+            .discord-button {
+                font-size: 20px;
+                padding: 15px 40px;
                 width: 100%;
             }
         }
@@ -209,29 +205,19 @@
                 Присоединяйся к огромному сообществу игроков!
             </div>
             
-            <!-- Блок с IP сервера -->
-            <div class="ip-container">
-                <span class="ip-text">play.technostone.ru</span>
-                <button class="copy-button" onclick="copyIP()">Скопировать IP</button>
+            <!-- Кнопка Начать играть (ссылка на Discord) -->
+            <a href="https://discord.gg/UCfqjw3RBe" 
+               class="discord-button" 
+               target="_blank" 
+               rel="noopener noreferrer">
+                Начать играть
+            </a>
+            
+            <!-- IP адрес сервера (просто для информации) -->
+            <div class="ip-hint">
+                IP сервера: <span>play.technostone.ru</span>
             </div>
         </div>
     </div>
-    
-    <script>
-        function copyIP() {
-            const ip = "play.technostone.ru";
-            navigator.clipboard.writeText(ip).then(() => {
-                const button = document.querySelector('.copy-button');
-                const originalText = button.textContent;
-                button.textContent = 'СКОПИРОВАНО!';
-                button.style.background = '#4caf50';
-                
-                setTimeout(() => {
-                    button.textContent = originalText;
-                    button.style.background = '#7aa2f7';
-                }, 2000);
-            });
-        }
-    </script>
 </body>
 </html>
