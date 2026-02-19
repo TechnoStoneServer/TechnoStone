@@ -1,1 +1,495 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechnoStone — Новости</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0b0c14 0%, #1a1f2f 100%);
+            min-height: 100vh;
+            color: white;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        .particles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(122, 162, 247, 0.3);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
+            }
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Меню навигации */
+        .nav {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            margin: 40px 0 60px 0;
+            flex-wrap: wrap;
+        }
+        
+        .nav a {
+            color: #8f9bb5;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s;
+            letter-spacing: 0.5px;
+            padding: 8px 16px;
+            border-radius: 30px;
+        }
+        
+        .nav a:hover {
+            color: #ffffff;
+            background: rgba(122, 162, 247, 0.15);
+            transform: translateY(-2px);
+        }
+        
+        .nav .active {
+            color: #ffffff;
+            background: rgba(122, 162, 247, 0.25);
+            border-bottom: 2px solid #7aa2f7;
+        }
+        
+        .nav .login {
+            background: linear-gradient(135deg, #7aa2f7, #9d7bf7);
+            color: white;
+            padding: 8px 24px;
+        }
+        
+        .nav .login:hover {
+            background: linear-gradient(135deg, #8bb2ff, #ad8cff);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(122, 162, 247, 0.4);
+        }
+        
+        /* Заголовок страницы */
+        .page-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .page-header h1 {
+            font-size: 56px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff, #a5b9ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+        
+        .page-header p {
+            color: #b1c3df;
+            font-size: 18px;
+            opacity: 0.9;
+        }
+        
+        /* Сетка новостей */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        
+        /* Карточка новости */
+        .news-card {
+            background: rgba(20, 25, 40, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(122, 162, 247, 0.3);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .news-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(135deg, #7aa2f7, #bb9af7);
+        }
+        
+        .news-tag {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+        
+        .tag-holiday {
+            background: rgba(255, 200, 87, 0.2);
+            color: #ffc857;
+            border: 1px solid rgba(255, 200, 87, 0.3);
+        }
+        
+        .tag-update {
+            background: rgba(122, 162, 247, 0.2);
+            color: #7aa2f7;
+            border: 1px solid rgba(122, 162, 247, 0.3);
+        }
+        
+        .tag-notice {
+            background: rgba(187, 154, 247, 0.2);
+            color: #bb9af7;
+            border: 1px solid rgba(187, 154, 247, 0.3);
+        }
+        
+        .tag-release {
+            background: rgba(158, 206, 106, 0.2);
+            color: #9ece6a;
+            border: 1px solid rgba(158, 206, 106, 0.3);
+        }
+        
+        .news-date {
+            color: #7aa2f7;
+            font-size: 14px;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        
+        .news-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: white;
+            line-height: 1.3;
+        }
+        
+        .news-excerpt {
+            color: #a0a8c0;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .news-link {
+            color: #7aa2f7;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: gap 0.3s;
+        }
+        
+        .news-link:hover {
+            gap: 10px;
+            color: #9bb9ff;
+        }
+        
+        /* Пагинация */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 50px 0;
+        }
+        
+        .page-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: rgba(20, 25, 40, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            color: #8f9bb5;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .page-btn:hover {
+            background: rgba(122, 162, 247, 0.2);
+            color: white;
+            border-color: #7aa2f7;
+        }
+        
+        .page-btn.active {
+            background: #7aa2f7;
+            color: white;
+            border-color: #7aa2f7;
+        }
+        
+        /* Декоративные элементы */
+        .glow-circle {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            z-index: -1;
+        }
+        
+        .circle-1 {
+            top: -200px;
+            left: -200px;
+            background: radial-gradient(circle, rgba(122, 162, 247, 0.3) 0%, transparent 70%);
+            animation: rotate 40s linear infinite;
+        }
+        
+        .circle-2 {
+            bottom: -200px;
+            right: -200px;
+            background: radial-gradient(circle, rgba(187, 154, 247, 0.3) 0%, transparent 70%);
+            animation: rotate 30s linear infinite reverse;
+        }
+        
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        /* Адаптация под мобильные */
+        @media (max-width: 768px) {
+            .nav {
+                gap: 15px;
+                margin: 30px 0 40px 0;
+            }
+            
+            .nav a {
+                font-size: 14px;
+                padding: 6px 12px;
+            }
+            
+            .page-header h1 {
+                font-size: 40px;
+            }
+            
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .news-card {
+                padding: 20px;
+            }
+            
+            .news-title {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+    
+    <div class="glow-circle circle-1"></div>
+    <div class="glow-circle circle-2"></div>
+    
+    <div class="container">
+        <!-- Навигационное меню -->
+        <div class="nav">
+            <a href="index.html">ГЛАВНАЯ</a>
+            <a href="news.html" class="active">НОВОСТИ</a>
+            <a href="donate.html">ДОНАТ</a>
+            <a href="rules.html">ПРАВИЛА</a>
+            <a href="wiki.html">ВИКИ</a>
+            <a href="login.html" class="login">ВХОД →</a>
+        </div>
+        
+        <!-- Заголовок страницы -->
+        <div class="page-header">
+            <h1>Новости</h1>
+            <p>Будь в курсе всех последних релизов и обновлений сервера</p>
+        </div>
+        
+        <!-- Сетка новостей -->
+        <div class="news-grid">
+            <!-- Новость 1 -->
+            <div class="news-card">
+                <span class="news-tag tag-holiday">ПРАЗДНИК · 28.05.2025</span>
+                <h3 class="news-title">Нам почти 6 лет!</h3>
+                <p class="news-excerpt">
+                    Нам почти 6 лет! Почти 6 лет назад, 1 июня 2019 начался первый сезон TechnoStone и...
+                </p>
+                <a href="#" class="news-link">Подробнее ➡</a>
+            </div>
+            
+            <!-- Новость 2 -->
+            <div class="news-card">
+                <span class="news-tag tag-update">ОБНОВЛЕНИЕ · 25.05.2025</span>
+                <h3 class="news-title">Игровое обновление 3.1.0</h3>
+                <p class="news-excerpt">
+                    С нововведением "Статистика предметов". Теперь у ваших инструментов, брони и оружия...
+                </p>
+                <a href="#" class="news-link">Подробнее ➡</a>
+            </div>
+            
+            <!-- Новость 3 -->
+            <div class="news-card">
+                <span class="news-tag tag-update">ОБНОВЛЕНИЕ · 08.02.2025</span>
+                <h3 class="news-title">Игровой патч 3.0.3</h3>
+                <p class="news-excerpt">
+                    Нововведения: - Теперь команду /chat mode можно использовать без дополнительных прав...
+                </p>
+                <a href="#" class="news-link">Подробнее ➡</a>
+            </div>
+            
+            <!-- Новость 4 -->
+            <div class="news-card">
+                <span class="news-tag tag-notice">УВЕДОМЛЕНИЕ · 22.12.2024</span>
+                <h3 class="news-title">Новогодний набор эффектов</h3>
+                <p class="news-excerpt">
+                    Спустя год Новогодний набор вновь доступен для покупки. В наборе: праздничные частицы...
+                </p>
+                <a href="#" class="news-link">Подробнее ➡</a>
+            </div>
+            
+            <!-- Новость 5 -->
+            <div class="news-card">
+                <span class="news-tag tag-update">ОБНОВЛЕНИЕ · 02.11.2024</span>
+                <h3 class="news-title">Технический патч 3.0.2</h3>
+                <p class="news-excerpt">
+                    Нововведения: - Добавлен опыт скилл «Копание» за блоки. - Исправлены ошибки крафта...
+                </p>
+                <a href="#" class="news-link">Подробнее ➡</a>
+            </div>
+            
+            <!-- Новость 6 -->
+            <div class="news-card">
+                <span class="news-tag tag-notice">УВЕДОМЛЕНИЕ · 20.10.2024</span>
+                <h3 class="news-title">Набор эффектов</h3>
+                <p class="news-excerpt">
+                    Новые эффекты доступны в магазине. Улучшай свою игру с уникальными визуальными эффектами...
+                </p>
+                <a href="#" class="news-link">Подробнее ➡</a>
+            </div>
+            
+            <!-- Новость 7 -->
+            <div class="news-card">
+                <span class="news-tag tag-release">РЕЛИЗ · 25.08.2024</span>
+                <h3 class="news-title">Кастомные измерения</h3>
+                <p class="news-excerpt">
+                    Новые миры для исследования! Открой для себя уникальные биомы с редкими ресурсами...
+                </p>
+                <a href="#" class="news-link">Подробнее ➡</a>
+            </div>
+            
+            <!-- Новость 8 -->
+            <div class="news-card">
+                <span class="news-tag tag-update">ОБНОВЛЕНИЕ · 22.08.2024</span>
+                <h3 class="news-title">Технический патч</h3>
+                <p class="news-excerpt">
+                    Оптимизация сервера и исправление багов. Увеличена производительность в загруженных чанках...
+                </p>
+                <a href="#" class="news-link">Подробнее ➡</a>
+            </div>
+            
+            <!-- Новость 9 -->
+            <div class="news-card">
+                <span class="news-tag tag-update">ОБНОВЛЕНИЕ · 13.07.2024</span>
+                <h3 class="news-title">Встречайте пятый сезон</h3>
+                <p class="news-excerpt">
+                    Новый сезон с обновленным миром, новыми механиками и ивентами. Время начать всё заново...
+                </p>
+                <a href="#" class="news-link">Подробнее ➡</a>
+            </div>
+            
+            <!-- Новость 10 -->
+            <div class="news-card">
+                <span class="news-tag tag-holiday">ПРАЗДНИК · 28.05.2024</span>
+                <h3 class="news-title">Нам почти 5 лет!</h3>
+                <p class="news-excerpt">
+                    Пятилетие сервера! Спасибо всем, кто был с нами все эти годы. Праздничные ивенты и подарки...
+                </p>
+                <a href="#" class="news-link">Подробнее ➡</a>
+            </div>
+        </div>
+        
+        <!-- Пагинация (страницы) -->
+        <div class="pagination">
+            <button class="page-btn active">1</button>
+            <button class="page-btn">2</button>
+            <button class="page-btn">3</button>
+            <button class="page-btn">4</button>
+            <button class="page-btn">→</button>
+        </div>
+    </div>
 
+    <script>
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const count = 30;
+            
+            for (let i = 0; i < count; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                const size = Math.random() * 6 + 2;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                
+                const colors = ['#7aa2f7', '#bb9af7', '#9ece6a', '#e0af68'];
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.opacity = Math.random() * 0.5 + 0.2;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        createParticles();
+    </script>
+</body>
+</html>
