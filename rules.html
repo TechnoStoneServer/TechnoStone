@@ -1,1 +1,571 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechnoStone — Правила сервера</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0b0c14 0%, #1a1f2f 100%);
+            min-height: 100vh;
+            color: white;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        .particles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(122, 162, 247, 0.3);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
+            }
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Меню навигации */
+        .nav {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            margin: 40px 0 40px 0;
+            flex-wrap: wrap;
+        }
+        
+        .nav a {
+            color: #8f9bb5;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s;
+            letter-spacing: 0.5px;
+            padding: 8px 16px;
+            border-radius: 30px;
+        }
+        
+        .nav a:hover {
+            color: #ffffff;
+            background: rgba(122, 162, 247, 0.15);
+            transform: translateY(-2px);
+        }
+        
+        .nav .active {
+            color: #ffffff;
+            background: rgba(122, 162, 247, 0.25);
+            border-bottom: 2px solid #7aa2f7;
+        }
+        
+        .nav .login {
+            background: linear-gradient(135deg, #7aa2f7, #9d7bf7);
+            color: white;
+            padding: 8px 24px;
+        }
+        
+        .nav .login:hover {
+            background: linear-gradient(135deg, #8bb2ff, #ad8cff);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(122, 162, 247, 0.4);
+        }
+        
+        /* Заголовок страницы */
+        .page-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .page-header h1 {
+            font-size: 56px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff, #a5b9ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        
+        .update-date {
+            color: #7aa2f7;
+            font-size: 16px;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        /* Навигация по правилам */
+        .rules-nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .rules-nav-item {
+            color: #b1c3df;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 8px 20px;
+            border-radius: 30px;
+            background: rgba(20, 25, 40, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s;
+        }
+        
+        .rules-nav-item:hover {
+            background: rgba(122, 162, 247, 0.2);
+            color: white;
+            border-color: #7aa2f7;
+        }
+        
+        /* Основной контент правил */
+        .rules-content {
+            background: rgba(20, 25, 40, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Раздел правил */
+        .rules-section {
+            margin-bottom: 40px;
+        }
+        
+        .rules-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .section-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #7aa2f7;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(122, 162, 247, 0.3);
+        }
+        
+        .section-subtitle {
+            font-size: 20px;
+            font-weight: 600;
+            color: #bb9af7;
+            margin: 25px 0 15px 0;
+        }
+        
+        .rule-item {
+            margin-bottom: 20px;
+            padding-left: 20px;
+            border-left: 3px solid rgba(122, 162, 247, 0.3);
+        }
+        
+        .rule-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 8px;
+        }
+        
+        .rule-text {
+            color: #b1c3df;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+        
+        .rule-note {
+            color: #e0af68;
+            font-size: 15px;
+            padding: 10px 15px;
+            background: rgba(224, 175, 104, 0.1);
+            border-radius: 12px;
+            margin-top: 10px;
+            border: 1px solid rgba(224, 175, 104, 0.2);
+        }
+        
+        .rule-list {
+            list-style: none;
+            padding-left: 20px;
+        }
+        
+        .rule-list li {
+            color: #b1c3df;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .rule-list li::before {
+            content: "•";
+            color: #7aa2f7;
+            font-size: 20px;
+            position: absolute;
+            left: 0;
+            top: -2px;
+        }
+        
+        .rule-list li strong {
+            color: #7aa2f7;
+        }
+        
+        .punishment {
+            color: #f7768e;
+            font-weight: 600;
+        }
+        
+        /* Декоративные элементы */
+        .glow-circle {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            z-index: -1;
+        }
+        
+        .circle-1 {
+            top: -200px;
+            left: -200px;
+            background: radial-gradient(circle, rgba(122, 162, 247, 0.3) 0%, transparent 70%);
+            animation: rotate 40s linear infinite;
+        }
+        
+        .circle-2 {
+            bottom: -200px;
+            right: -200px;
+            background: radial-gradient(circle, rgba(187, 154, 247, 0.3) 0%, transparent 70%);
+            animation: rotate 30s linear infinite reverse;
+        }
+        
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        /* Адаптация под мобильные */
+        @media (max-width: 768px) {
+            .nav {
+                gap: 15px;
+                margin: 30px 0 30px 0;
+            }
+            
+            .nav a {
+                font-size: 14px;
+                padding: 6px 12px;
+            }
+            
+            .page-header h1 {
+                font-size: 40px;
+            }
+            
+            .rules-content {
+                padding: 25px;
+            }
+            
+            .section-title {
+                font-size: 24px;
+            }
+            
+            .section-subtitle {
+                font-size: 18px;
+            }
+            
+            .rule-item {
+                padding-left: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+    
+    <div class="glow-circle circle-1"></div>
+    <div class="glow-circle circle-2"></div>
+    
+    <div class="container">
+        <!-- Навигационное меню -->
+        <div class="nav">
+            <a href="index.html">ГЛАВНАЯ</a>
+            <a href="news.html">НОВОСТИ</a>
+            <a href="donate.html">ДОНАТ</a>
+            <a href="rules.html" class="active">ПРАВИЛА</a>
+            <a href="wiki.html">ВИКИ</a>
+            <a href="login.html" class="login">ВХОД →</a>
+        </div>
+        
+        <!-- Заголовок страницы -->
+        <div class="page-header">
+            <h1>Правила сервера</h1>
+            <div class="update-date">Последнее обновление: 20.02.2026 00:00:00 МСК</div>
+        </div>
+        
+        <!-- Навигация по разделам правил -->
+        <div class="rules-nav">
+            <a href="#section1" class="rules-nav-item">1. Читы</a>
+            <a href="#section2" class="rules-nav-item">2. PvP</a>
+            <a href="#section3" class="rules-nav-item">3. VPN</a>
+            <a href="#section4" class="rules-nav-item">4. Гриферство</a>
+            <a href="#section5" class="rules-nav-item">5. Политика</a>
+            <a href="#section6" class="rules-nav-item">6. Территория</a>
+            <a href="#section7" class="rules-nav-item">7. Особые объекты</a>
+            <a href="#section8" class="rules-nav-item">8. Администрация</a>
+            <a href="#section9" class="rules-nav-item">9. Торговля</a>
+            <a href="#section10" class="rules-nav-item">10. Чаты</a>
+            <a href="#section11" class="rules-nav-item">11. Лаги</a>
+            <a href="#section12" class="rules-nav-item">12. Доп</a>
+        </div>
+        
+        <!-- Основной контент правил -->
+        <div class="rules-content">
+            <!-- Раздел 1: Читы -->
+            <div id="section1" class="rules-section">
+                <h2 class="section-title">1. Читы</h2>
+                
+                <div class="rule-item">
+                    <div class="rule-title">1.1 Определение читов</div>
+                    <div class="rule-text">
+                        Читами являются любые моды, ресурс-паки, текстур-паки, программы и т.д., дающие преимущество перед другими игроками. Непредусмотренные игрой изменения options.txt также являются читами.
+                    </div>
+                </div>
+                
+                <div class="rule-item">
+                    <div class="rule-title">1.2 Исключения модов</div>
+                    <div class="rule-text">
+                        Исключения модов: моды на оптимизацию, моды на визуализацию освещённости территории, моды на миникарты с выключенным радаром и картой пещер, Litematica и подобные ей моды.
+                    </div>
+                </div>
+                
+                <div class="rule-item">
+                    <div class="rule-title">1.3 Проверка на модификации</div>
+                    <div class="rule-text">
+                        В случае назначения проверки на модификацию клиента Вы соглашаетесь на предоставление информации и доступа к файлам Minecraft.
+                    </div>
+                </div>
+                
+                <div class="rule-item">
+                    <div class="rule-title">1.4 Права администрации</div>
+                    <div class="rule-text">
+                        Любой член администрации имеет право на проверку игровых модификаций игрока. Игрок не имеет права отказываться. Игрок обязан связаться с членом администрации в течение установленного проверяющим времени.
+                    </div>
+                </div>
+                
+                <div class="rule-item">
+                    <div class="rule-title">1.4.1 Отказ от проверки</div>
+                    <div class="rule-text">
+                        В случае отказа от проверки даётся бан на две недели, повторные отказы после снятия бана - удвоение бана.
+                    </div>
+                </div>
+                
+                <div class="rule-item">
+                    <div class="rule-title">1.4.2 Выход с сервера</div>
+                    <div class="rule-text">
+                        Выход с сервера при запросе проверки наказывается в соответствии с пунктом 1.4.1.
+                    </div>
+                </div>
+                
+                <div class="rule-item">
+                    <div class="rule-title">1.4.3 Обнаружение читов</div>
+                    <div class="rule-text">
+                        В случае обнаружения читов даётся бан на <span class="punishment">1 месяц</span>.
+                    </div>
+                </div>
+                
+                <div class="rule-item">
+                    <div class="rule-title">1.4.4 Изменение папки logs</div>
+                    <div class="rule-text">
+                        В случае изменения папки logs и/или файлов, находящихся в ней, член администрации вправе наказать вас в соответствии с пунктом 1.4.3.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Раздел 2: PvP -->
+            <div id="section2" class="rules-section">
+                <h2 class="section-title">2. PvP</h2>
+                
+                <div class="rule-item">
+                    <div class="rule-text">
+                        Правила PvP будут добавлены позже. Основные принципы: запрещено использование багов, вынуждение к PvP обманом и т.д.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Раздел 3: VPN -->
+            <div id="section3" class="rules-section">
+                <h2 class="section-title">3. VPN</h2>
+                
+                <div class="rule-item">
+                    <div class="rule-text">
+                        Использование VPN разрешено, но может вызвать подозрения и дополнительную проверку. Администрация оставляет за собой право запросить отключение VPN для верификации.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Раздел 4: Гриферство и воровство -->
+            <div id="section4" class="rules-section">
+                <h2 class="section-title">4. Гриферство и воровство</h2>
+                
+                <div class="rule-item">
+                    <div class="rule-text">
+                        Запрещено любое гриферство, воровство, уничтожение чужих построек без согласия владельца. Наказание — бан от 1 недели до перманентного.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Раздел 5: Политика сервера -->
+            <div id="section5" class="rules-section">
+                <h2 class="section-title">5. Политика сервера</h2>
+                
+                <div class="rule-item">
+                    <div class="rule-text">
+                        Запрещены политические провокации, распространение запрещенной информации, дискриминация и разжигание межнациональной розни.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Раздел 6: Территория игроков -->
+            <div id="section6" class="rules-section">
+                <h2 class="section-title">6. Территория игроков</h2>
+                
+                <div class="rule-item">
+                    <div class="rule-text">
+                        Территория игрока защищена приватом. Строительство рядом с чужой территорией должно вестись с отступом не менее 5 блоков, если нет согласия владельца.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Раздел 7: Особые объекты -->
+            <div id="section7" class="rules-section">
+                <h2 class="section-title">7. Особые объекты</h2>
+                
+                <div class="rule-item">
+                    <div class="rule-text">
+                        К особым объектам относятся: спавнеры, фермы, общественные постройки. Их уничтожение или порча карается строже обычного гриферства.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Раздел 8: Затруднение работы администрации -->
+            <div id="section8" class="rules-section">
+                <h2 class="section-title">8. Затруднение работы администрации</h2>
+                
+                <div class="rule-item">
+                    <div class="rule-text">
+                        Запрещено любое действие, затрудняющее работу администрации: обман, введение в заблуждение, создание помех, фальшивые жалобы.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Раздел 9: Торговля и торговые отношения -->
+            <div id="section9" class="rules-section">
+                <h2 class="section-title">9. Торговля и торговые отношения</h2>
+                
+                <div class="rule-item">
+                    <div class="rule-text">
+                        Торговля между игроками разрешена. Запрещен обман в сделках (невыполнение обязательств). Спорные ситуации решаются администрацией.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Раздел 10: Поведение в чатах -->
+            <div id="section10" class="rules-section">
+                <h2 class="section-title">10. Поведение в чатах</h2>
+                
+                <div class="rule-item">
+                    <div class="rule-text">
+                        Запрещены: флуд, капс, оскорбления, спам, реклама сторонних ресурсов, провокации, токсичное поведение.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Раздел 11: Структуры, вызывающие лаги сервера -->
+            <div id="section11" class="rules-section">
+                <h2 class="section-title">11. Структуры, вызывающие лаги сервера</h2>
+                
+                <div class="rule-item">
+                    <div class="rule-text">
+                        Запрещено создание механизмов, вызывающих лаги: огромные фермы с большим количеством сущностей, бесконечные циклы из редстоуна, спам-ловушки и т.д.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Раздел 12: Доп -->
+            <div id="section12" class="rules-section">
+                <h2 class="section-title">12. Дополнительно</h2>
+                
+                <div class="rule-item">
+                    <div class="rule-text">
+                        Администрация оставляет за собой право добавлять и изменять правила без предварительного уведомления. Незнание правил не освобождает от ответственности.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <script>
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const count = 30;
+            
+            for (let i = 0; i < count; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                const size = Math.random() * 6 + 2;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                
+                const colors = ['#7aa2f7', '#bb9af7', '#9ece6a', '#e0af68'];
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.opacity = Math.random() * 0.5 + 0.2;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        createParticles();
+    </script>
+</body>
+</html>
