@@ -54,7 +54,7 @@
         }
         
         .container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
             position: relative;
@@ -66,7 +66,7 @@
             display: flex;
             gap: 30px;
             justify-content: center;
-            margin: 40px 0 60px 0;
+            margin: 40px 0 40px 0;
             flex-wrap: wrap;
         }
         
@@ -91,18 +91,6 @@
             color: #ffffff;
             background: rgba(122, 162, 247, 0.25);
             border-bottom: 2px solid #7aa2f7;
-        }
-        
-        .nav .login {
-            background: linear-gradient(135deg, #7aa2f7, #9d7bf7);
-            color: white;
-            padding: 8px 24px;
-        }
-        
-        .nav .login:hover {
-            background: linear-gradient(135deg, #8bb2ff, #ad8cff);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(122, 162, 247, 0.4);
         }
         
         /* Заголовок страницы */
@@ -191,12 +179,6 @@
             border: 1px solid rgba(187, 154, 247, 0.3);
         }
         
-        .tag-release {
-            background: rgba(158, 206, 106, 0.2);
-            color: #9ece6a;
-            border: 1px solid rgba(158, 206, 106, 0.3);
-        }
-        
         .news-date {
             color: #7aa2f7;
             font-size: 14px;
@@ -267,7 +249,6 @@
             border-color: #7aa2f7;
         }
         
-        /* Декоративные элементы */
         .glow-circle {
             position: fixed;
             width: 500px;
@@ -299,16 +280,10 @@
             }
         }
         
-        /* Адаптация под мобильные */
         @media (max-width: 768px) {
             .nav {
                 gap: 15px;
                 margin: 30px 0 40px 0;
-            }
-            
-            .nav a {
-                font-size: 14px;
-                padding: 6px 12px;
             }
             
             .page-header h1 {
@@ -317,14 +292,6 @@
             
             .news-grid {
                 grid-template-columns: 1fr;
-            }
-            
-            .news-card {
-                padding: 20px;
-            }
-            
-            .news-title {
-                font-size: 20px;
             }
         }
     </style>
@@ -336,123 +303,54 @@
     <div class="glow-circle circle-2"></div>
     
     <div class="container">
-        <!-- Навигационное меню -->
+        <!-- Меню навигации -->
         <div class="nav">
             <a href="index.html">ГЛАВНАЯ</a>
             <a href="news.html" class="active">НОВОСТИ</a>
             <a href="donate.html">ДОНАТ</a>
             <a href="rules.html">ПРАВИЛА</a>
             <a href="wiki.html">ВИКИ</a>
-            <a href="login.html" class="login">ВХОД →</a>
         </div>
         
         <!-- Заголовок страницы -->
         <div class="page-header">
             <h1>Новости</h1>
-            <p>Будь в курсе всех последних релизов и обновлений сервера</p>
+            <p>Будь в курсе всех последних событий сервера</p>
         </div>
         
         <!-- Сетка новостей -->
         <div class="news-grid">
-            <!-- Новость 1 -->
+            
+            <!-- ========== ШАБЛОН 1: ПРАЗДНИК (жёлтый) ========== -->
             <div class="news-card">
-                <span class="news-tag tag-holiday">ПРАЗДНИК · 28.05.2025</span>
-                <h3 class="news-title">Нам почти 6 лет!</h3>
+                <span class="news-tag tag-holiday">ПРАЗДНИК · 00.00.0000</span>
+                <h3 class="news-title">Заголовок праздничной новости</h3>
                 <p class="news-excerpt">
-                    Нам почти 6 лет! Почти 6 лет назад, 1 июня 2019 начался первый сезон TechnoStone и...
+                    Краткое описание праздничного события. Что произошло, кого поздравляем, какие плюшки...
                 </p>
                 <a href="#" class="news-link">Подробнее ➡</a>
             </div>
             
-            <!-- Новость 2 -->
+            <!-- ========== ШАБЛОН 2: ОБНОВЛЕНИЕ (синий) ========== -->
             <div class="news-card">
-                <span class="news-tag tag-update">ОБНОВЛЕНИЕ · 25.05.2025</span>
-                <h3 class="news-title">Игровое обновление 3.1.0</h3>
+                <span class="news-tag tag-update">ОБНОВЛЕНИЕ · 00.00.0000</span>
+                <h3 class="news-title">Заголовок обновления</h3>
                 <p class="news-excerpt">
-                    С нововведением "Статистика предметов". Теперь у ваших инструментов, брони и оружия...
+                    Краткое описание нового патча, версии, изменений. Что добавили, что починили...
                 </p>
                 <a href="#" class="news-link">Подробнее ➡</a>
             </div>
             
-            <!-- Новость 3 -->
+            <!-- ========== ШАБЛОН 3: УВЕДОМЛЕНИЕ (фиолетовый) ========== -->
             <div class="news-card">
-                <span class="news-tag tag-update">ОБНОВЛЕНИЕ · 08.02.2025</span>
-                <h3 class="news-title">Игровой патч 3.0.3</h3>
+                <span class="news-tag tag-notice">УВЕДОМЛЕНИЕ · 00.00.0000</span>
+                <h3 class="news-title">Заголовок уведомления</h3>
                 <p class="news-excerpt">
-                    Нововведения: - Теперь команду /chat mode можно использовать без дополнительных прав...
+                    Важная информация для игроков: техработы, ивенты, изменения правил...
                 </p>
                 <a href="#" class="news-link">Подробнее ➡</a>
             </div>
             
-            <!-- Новость 4 -->
-            <div class="news-card">
-                <span class="news-tag tag-notice">УВЕДОМЛЕНИЕ · 22.12.2024</span>
-                <h3 class="news-title">Новогодний набор эффектов</h3>
-                <p class="news-excerpt">
-                    Спустя год Новогодний набор вновь доступен для покупки. В наборе: праздничные частицы...
-                </p>
-                <a href="#" class="news-link">Подробнее ➡</a>
-            </div>
-            
-            <!-- Новость 5 -->
-            <div class="news-card">
-                <span class="news-tag tag-update">ОБНОВЛЕНИЕ · 02.11.2024</span>
-                <h3 class="news-title">Технический патч 3.0.2</h3>
-                <p class="news-excerpt">
-                    Нововведения: - Добавлен опыт скилл «Копание» за блоки. - Исправлены ошибки крафта...
-                </p>
-                <a href="#" class="news-link">Подробнее ➡</a>
-            </div>
-            
-            <!-- Новость 6 -->
-            <div class="news-card">
-                <span class="news-tag tag-notice">УВЕДОМЛЕНИЕ · 20.10.2024</span>
-                <h3 class="news-title">Набор эффектов</h3>
-                <p class="news-excerpt">
-                    Новые эффекты доступны в магазине. Улучшай свою игру с уникальными визуальными эффектами...
-                </p>
-                <a href="#" class="news-link">Подробнее ➡</a>
-            </div>
-            
-            <!-- Новость 7 -->
-            <div class="news-card">
-                <span class="news-tag tag-release">РЕЛИЗ · 25.08.2024</span>
-                <h3 class="news-title">Кастомные измерения</h3>
-                <p class="news-excerpt">
-                    Новые миры для исследования! Открой для себя уникальные биомы с редкими ресурсами...
-                </p>
-                <a href="#" class="news-link">Подробнее ➡</a>
-            </div>
-            
-            <!-- Новость 8 -->
-            <div class="news-card">
-                <span class="news-tag tag-update">ОБНОВЛЕНИЕ · 22.08.2024</span>
-                <h3 class="news-title">Технический патч</h3>
-                <p class="news-excerpt">
-                    Оптимизация сервера и исправление багов. Увеличена производительность в загруженных чанках...
-                </p>
-                <a href="#" class="news-link">Подробнее ➡</a>
-            </div>
-            
-            <!-- Новость 9 -->
-            <div class="news-card">
-                <span class="news-tag tag-update">ОБНОВЛЕНИЕ · 13.07.2024</span>
-                <h3 class="news-title">Встречайте пятый сезон</h3>
-                <p class="news-excerpt">
-                    Новый сезон с обновленным миром, новыми механиками и ивентами. Время начать всё заново...
-                </p>
-                <a href="#" class="news-link">Подробнее ➡</a>
-            </div>
-            
-            <!-- Новость 10 -->
-            <div class="news-card">
-                <span class="news-tag tag-holiday">ПРАЗДНИК · 28.05.2024</span>
-                <h3 class="news-title">Нам почти 5 лет!</h3>
-                <p class="news-excerpt">
-                    Пятилетие сервера! Спасибо всем, кто был с нами все эти годы. Праздничные ивенты и подарки...
-                </p>
-                <a href="#" class="news-link">Подробнее ➡</a>
-            </div>
         </div>
         
         <!-- Пагинация (страницы) -->
@@ -460,7 +358,6 @@
             <button class="page-btn active">1</button>
             <button class="page-btn">2</button>
             <button class="page-btn">3</button>
-            <button class="page-btn">4</button>
             <button class="page-btn">→</button>
         </div>
     </div>
