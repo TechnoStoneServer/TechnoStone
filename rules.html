@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechnoStone — Правила сервера</title>
+    <title>TechnoStone — Правила</title>
     <link rel="icon" href="icon.png" type="image/png">
     <style>
         * {
@@ -94,22 +94,10 @@
             border-bottom: 2px solid #7aa2f7;
         }
         
-        .nav .login {
-            background: linear-gradient(135deg, #7aa2f7, #9d7bf7);
-            color: white;
-            padding: 8px 24px;
-        }
-        
-        .nav .login:hover {
-            background: linear-gradient(135deg, #8bb2ff, #ad8cff);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(122, 162, 247, 0.4);
-        }
-        
         /* Заголовок страницы */
         .page-header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
         
         .page-header h1 {
@@ -121,14 +109,12 @@
             margin-bottom: 10px;
         }
         
-        .update-date {
-            color: #7aa2f7;
+        .page-header p {
+            color: #b1c3df;
             font-size: 16px;
-            opacity: 0.9;
-            margin-bottom: 20px;
         }
         
-        /* Навигация по правилам */
+        /* Навигация по разделам */
         .rules-nav {
             display: flex;
             justify-content: center;
@@ -146,7 +132,6 @@
             background: rgba(20, 25, 40, 0.5);
             border: 1px solid rgba(255, 255, 255, 0.05);
             transition: all 0.3s;
-            font-weight: 500;
         }
         
         .rules-nav-item:hover {
@@ -155,7 +140,7 @@
             border-color: #7aa2f7;
         }
         
-        /* Основной контент правил */
+        /* Основной контент */
         .rules-content {
             background: rgba(20, 25, 40, 0.7);
             backdrop-filter: blur(10px);
@@ -163,11 +148,12 @@
             padding: 40px;
             border: 1px solid rgba(255, 255, 255, 0.05);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            margin-bottom: 50px;
         }
         
-        /* Раздел правил */
+        /* Раздел */
         .rules-section {
-            margin-bottom: 50px;
+            margin-bottom: 40px;
             scroll-margin-top: 30px;
         }
         
@@ -176,100 +162,96 @@
         }
         
         .section-title {
-            font-size: 32px;
+            font-size: 28px;
             font-weight: 700;
             color: #7aa2f7;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             padding-bottom: 10px;
             border-bottom: 2px solid rgba(122, 162, 247, 0.3);
-            position: relative;
         }
         
         .section-title::before {
-            content: "⚡";
-            margin-right: 10px;
-            color: #bb9af7;
+            content: "⚡ ";
+            font-size: 28px;
         }
         
-        .rule-block {
-            margin-bottom: 30px;
-            padding: 20px;
+        /* Карточка правила */
+        .rule-card {
             background: rgba(0, 0, 0, 0.2);
-            border-radius: 20px;
-            border-left: 4px solid #7aa2f7;
-        }
-        
-        .rule-item {
-            margin-bottom: 20px;
-            padding: 15px 20px;
-            background: rgba(255, 255, 255, 0.02);
             border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.03);
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid #7aa2f7;
+            transition: all 0.3s;
         }
         
-        .rule-title {
-            font-size: 18px;
-            font-weight: 600;
-            color: white;
-            margin-bottom: 8px;
+        .rule-card:hover {
+            background: rgba(122, 162, 247, 0.1);
+            transform: translateX(5px);
+        }
+        
+        .rule-header {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
         }
         
         .rule-number {
             background: #7aa2f7;
             color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
+            padding: 5px 15px;
+            border-radius: 30px;
             font-size: 14px;
-            font-weight: 600;
+            font-weight: 700;
             display: inline-block;
-            margin-right: 10px;
+        }
+        
+        .rule-title {
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
         }
         
         .rule-text {
             color: #b1c3df;
             font-size: 16px;
             line-height: 1.6;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
         
         .rule-punishment {
-            color: #f7768e;
-            font-weight: 600;
-            font-size: 15px;
-            padding: 8px 15px;
             background: rgba(247, 118, 142, 0.1);
+            border: 1px solid rgba(247, 118, 142, 0.3);
+            color: #f7768e;
+            padding: 10px 18px;
             border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
             display: inline-block;
-            border: 1px solid rgba(247, 118, 142, 0.2);
-            margin-top: 8px;
+        }
+        
+        .rule-punishment::before {
+            content: "⚖️ ";
+            margin-right: 5px;
         }
         
         .rule-note {
-            color: #e0af68;
-            font-size: 15px;
-            padding: 12px 18px;
             background: rgba(224, 175, 104, 0.1);
+            border-left: 4px solid #e0af68;
+            padding: 15px 20px;
             border-radius: 12px;
-            margin-top: 15px;
-            border: 1px solid rgba(224, 175, 104, 0.2);
-        }
-        
-        .rule-subsection {
-            margin-left: 30px;
-            margin-top: 15px;
-            padding-left: 20px;
-            border-left: 2px dashed rgba(122, 162, 247, 0.3);
+            margin: 15px 0 10px 0;
+            color: #e0af68;
+            font-style: italic;
         }
         
         .rule-highlight {
-            background: linear-gradient(135deg, rgba(122, 162, 247, 0.1), rgba(187, 154, 247, 0.1));
-            border: 1px solid rgba(122, 162, 247, 0.2);
+            background: rgba(122, 162, 247, 0.15);
+            border: 1px solid rgba(122, 162, 247, 0.3);
         }
         
-        /* Декоративные элементы */
         .glow-circle {
             position: fixed;
             width: 500px;
@@ -301,16 +283,10 @@
             }
         }
         
-        /* Адаптация под мобильные */
         @media (max-width: 768px) {
             .nav {
                 gap: 15px;
-                margin: 30px 0 30px 0;
-            }
-            
-            .nav a {
-                font-size: 14px;
-                padding: 6px 12px;
+                margin: 30px 0;
             }
             
             .page-header h1 {
@@ -322,15 +298,13 @@
             }
             
             .section-title {
-                font-size: 26px;
+                font-size: 24px;
             }
             
-            .rule-subsection {
-                margin-left: 15px;
-            }
-            
-            .rule-item {
-                padding: 12px 15px;
+            .rule-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
             }
         }
     </style>
@@ -342,7 +316,7 @@
     <div class="glow-circle circle-2"></div>
     
     <div class="container">
-        <!-- Навигационное меню -->
+        <!-- Меню навигации -->
         <div class="nav">
             <a href="index.html">ГЛАВНАЯ</a>
             <a href="news.html">НОВОСТИ</a>
@@ -354,47 +328,61 @@
         <!-- Заголовок страницы -->
         <div class="page-header">
             <h1>Правила сервера</h1>
-            <div class="update-date">Последнее обновление: 21.02.2026</div>
+            <p>Общие правила игрового мира и сервера Discord</p>
         </div>
         
-        <!-- Навигация по разделам правил -->
+        <!-- Навигация по разделам -->
         <div class="rules-nav">
             <a href="#section1" class="rules-nav-item">1. Общие</a>
             <a href="#section2" class="rules-nav-item">2. Территории</a>
             <a href="#section3" class="rules-nav-item">3. Аккаунты</a>
-            <a href="#section4" class="rules-nav-item">4. Запрещенное</a>
-            <a href="#section5" class="rules-nav-item">5. Клиент</a>
+            <a href="#section4" class="rules-nav-item">4. Запрещённое</a>
+            <a href="#section5" class="rules-nav-item">5. Читы</a>
             <a href="#section6" class="rules-nav-item">6. Чаты</a>
-            <a href="#section7" class="rules-nav-item">7. Фракции</a>
         </div>
         
-        <!-- Основной контент правил -->
+        <!-- Основной контент -->
         <div class="rules-content">
+            
             <!-- Раздел 1: Общие правила -->
             <div id="section1" class="rules-section">
                 <h2 class="section-title">1. Общие правила</h2>
                 
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">1.1</span> Незнание правил не освобождает от ответственности!</div>
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <span class="rule-number">1.1</span>
+                    </div>
+                    <div class="rule-text">Незнание правил не освобождает от ответственности!</div>
                 </div>
                 
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">1.2</span> Запрещено препятствование работе Команды Проекта</div>
-                    <div class="rule-punishment">⚡ Бан на 12 часов</div>
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <span class="rule-number">1.2</span>
+                    </div>
+                    <div class="rule-text">Запрещено препятствование работе Команды Проекта.</div>
+                    <div class="rule-punishment">Бан на 12ч</div>
                 </div>
                 
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">1.3</span> Администрация вправе выдать любой срок и любую форму наказания</div>
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <span class="rule-number">1.3</span>
+                    </div>
+                    <div class="rule-text">Администрация вправе выдать любой срок и любую форму наказания.</div>
                 </div>
                 
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">1.4</span> Сроки наказаний суммируются</div>
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <span class="rule-number">1.4</span>
+                    </div>
+                    <div class="rule-text">Сроки наказаний суммируются.</div>
                 </div>
                 
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">1.5</span> За многократные и частые нарушения</div>
-                    <div class="rule-text">Администрация вправе выдать бан от 7 дней</div>
-                    <div class="rule-punishment">⚡ Бан от 7 дней</div>
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <span class="rule-number">1.5</span>
+                    </div>
+                    <div class="rule-text">За многократные и частые нарушения Администрация вправе выдать бан от 7 дней.</div>
+                    <div class="rule-punishment">Бан от 7 дней</div>
                 </div>
             </div>
             
@@ -402,67 +390,89 @@
             <div id="section2" class="rules-section">
                 <h2 class="section-title">2. Территории и постройки</h2>
                 
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">2.1</span> Порча общественных структур</div>
-                    <div class="rule-text">Запрещена порча/видоизменение структур общественного характера, в том числе Спавн и постройки игроков, предназначенные для общественного пользования (фермы, заводы, система Метро)</div>
-                    <div class="rule-punishment">⚡ Штрафы + исправительные работы</div>
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <span class="rule-number">2.1</span>
+                    </div>
+                    <div class="rule-text">Запрещена порча/видоизменение структур общественного характера, в том числе Спавн и постройки игроков, предназначенные для общественного пользования (фермы, заводы, система Метро).</div>
+                    <div class="rule-punishment">Штрафы + исправительные работы</div>
                 </div>
                 
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">2.2.1</span> Порча чужих территорий</div>
-                    <div class="rule-text">Запрещена порча территории других игроков, а также постройка на расстоянии менее 150 блоков от их территории без их согласия</div>
-                    <div class="rule-punishment">⚡ Штрафы + исправительные работы</div>
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <span class="rule-number">2.2.1</span>
+                    </div>
+                    <div class="rule-text">Запрещена порча территории других игроков, а также постройка на расстоянии менее 150 блоков от их территории без их согласия.</div>
+                    <div class="rule-punishment">Штрафы + исправительные работы</div>
                 </div>
                 
-                <div class="rule-item rule-highlight">
-                    <div class="rule-title"><span class="rule-number">2.2.2</span> Правила на территории</div>
+                <div class="rule-card rule-highlight">
+                    <div class="rule-header">
+                        <span class="rule-number">2.2.2</span>
+                    </div>
                     <div class="rule-text">Владелец территории имеет право устанавливать свои порядки на территории, но он обязан разместить перечень этих правил около главного входа. Штрафы за несоблюдение правил территории устанавливаются владельцем этой территории.</div>
                 </div>
                 
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">2.3</span> Помеха на чужой территории</div>
-                    <div class="rule-text">Запрещена помеха на чужой территории (любые действия мешающие каким либо образом другим игрокам). Если Вам мешает участник, сообщите об этом в канал для обращений, приложите скриншоты/фото.</div>
-                    <div class="rule-punishment">⚡ Штрафы + исправительные работы</div>
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <span class="rule-number">2.3</span>
+                    </div>
+                    <div class="rule-text">Запрещена помеха на чужой территории (любые действия, мешающие другим игрокам). Если вам мешает участник, сообщите об этом в канал для обращений, приложите скриншоты/фото.</div>
+                    <div class="rule-punishment">Штрафы + исправительные работы</div>
                 </div>
                 
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">2.4.1</span> Обозначение владений</div>
-                    <div class="rule-text">Каждый игрок, создавая свою территорию/город/государство, обязан поставить по всем её сторонам обозначения владений в виде табличек с надписями в формате "Данная территория принадлежит «Ник игрока» или «Название клана»", а так же сделать скриншот экрана с включённой f3.</div>
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <span class="rule-number">2.4.1</span>
+                    </div>
+                    <div class="rule-text">Каждый игрок, создавая свою территорию/город/государство, обязан поставить по всем её сторонам обозначения владений в виде табличек с надписями в формате: <strong>"Данная территория принадлежит [Ник игрока] или [Название клана]"</strong>, а также сделать скриншот экрана с включённой F3.</div>
                 </div>
                 
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">2.4.2</span> Действия при грифе</div>
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <span class="rule-number">2.4.2</span>
+                    </div>
                     <div class="rule-text">В случае грифа незамедлительно обратитесь в канал для обращений с подробным описанием проблемы и постарайтесь всё зафиксировать на видео/фото.</div>
                 </div>
                 
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">2.5</span> Воровство и кражи</div>
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <span class="rule-number">2.5</span>
+                    </div>
                     <div class="rule-text">Запрещено воровство/кража/мошенничество построек/ресурсов игроков, находящихся на отмеченной территории игроков.</div>
-                    <div class="rule-punishment">⚡ Штрафы + исправительные работы</div>
+                    <div class="rule-punishment">Штрафы + исправительные работы</div>
                 </div>
                 
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">2.6</span> Ловушки</div>
-                    <div class="rule-text">Запрещено создание ловушек и других механизмов/локаций, что могут навредить, каким либо образом, другим игрокам, при условии, что там нет предупреждающих знаков/символов/табличек.</div>
-                    <div class="rule-punishment">⚡ Штрафы + исправительные работы / Бан на 48ч</div>
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <span class="rule-number">2.6</span>
+                    </div>
+                    <div class="rule-text">Запрещено создание ловушек и других механизмов/локаций, которые могут навредить другим игрокам, при условии, что там нет предупреждающих знаков/символов/табличек.</div>
+                    <div class="rule-punishment">Штрафы + исправительные работы / Бан на 48ч</div>
                 </div>
                 
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">2.7</span> Запрещенная символика</div>
-                    <div class="rule-text">Запрещено строить политические/религиозные/знаки/метки (например свастику).</div>
-                    <div class="rule-punishment">⚡ Штрафы + исправительные работы / Бан на 48ч</div>
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <span class="rule-number">2.7</span>
+                    </div>
+                    <div class="rule-text">Запрещено строить политические/религиозные знаки/метки (например, свастику).</div>
+                    <div class="rule-punishment">Штрафы + исправительные работы / Бан на 48ч</div>
                 </div>
                 
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">2.8</span> Строительство на спавне</div>
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <span class="rule-number">2.8</span>
+                    </div>
                     <div class="rule-text">Запрещено строить на территории спавна без предварительного разговора с Командой Проекта.</div>
-                    <div class="rule-punishment">⚡ Штрафы + исправительные работы / Бан на 48ч</div>
+                    <div class="rule-punishment">Штрафы + исправительные работы / Бан на 48ч</div>
                 </div>
                 
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">2.9</span> Лаг-машины и 18+ контент</div>
-                    <div class="rule-text">Запрещены постройки, нарушающие работу сервера, к примеру различные механизмы - лаг-машины (В т.ч. большой бур из create), а также постройки неподобающего характера, или содержащие 18+ контент.</div>
-                    <div class="rule-punishment">⚡ Штрафы + исправительные работы / Бан до 4 дней</div>
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <span class="rule-number">2.9</span>
+                    </div>
+                    <div class="rule-text">Запрещены постройки, нарушающие работу сервера (лаг-машины, в т.ч. большой бур из Create), а также постройки неподобающего характера или содержащие 18+ контент.</div>
+                    <div class="rule-punishment">Штрафы + исправительные работы / Бан до 4 дней</div>
                 </div>
             </div>
             
@@ -470,107 +480,139 @@
             <div id="section3" class="rules-section">
                 <h2 class="section-title">3. Аккаунты</h2>
                 
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">3.1</span> Безопасность аккаунта</div>
-                    <div class="rule-text">Вы сами несете ответственность за безопасность своего аккаунта и обязуетесь соблюдать все надлежащие меры по обеспечению его безопасности и сохранности.</div>
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <span class="rule-number">3.1</span>
+                    </div>
+                    <div class="rule-text">Вы сами несете ответственность за безопасность своего аккаунта и обязуетесь соблюдать все меры по обеспечению его безопасности и сохранности.</div>
                 </div>
                 
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">3.2</span> Убийства игроков</div>
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <span class="rule-number">3.2</span>
+                    </div>
                     <div class="rule-text">Запрещено убивать игроков без обоюдного согласия.</div>
-                    <div class="rule-punishment">⚡ Штрафы + компенсации</div>
+                    <div class="rule-punishment">Штрафы + компенсации</div>
                 </div>
                 
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">3.3</span> Взлом аккаунтов</div>
-                    <div class="rule-text">Запрещена попытка обхода/взлом аккаунтов любыми способами (в том числе используя твинк аккаунты), также запрещено передавать информацию об аккаунте и сам Ваш аккаунт другим личностям.</div>
-                    <div class="rule-punishment">⚡ Бан до 10 дней</div>
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <span class="rule-number">3.3</span>
+                    </div>
+                    <div class="rule-text">Запрещена попытка обхода/взлома аккаунтов любыми способами (в т.ч. используя твинк-аккаунты). Запрещено передавать информацию об аккаунте и сам аккаунт другим лицам.</div>
+                    <div class="rule-punishment">Бан до 10 дней</div>
                 </div>
                 
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">3.4</span> Махинации с аккаунтами</div>
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <span class="rule-number">3.4</span>
+                    </div>
                     <div class="rule-text">Запрещены любые махинации с аккаунтами других игроков.</div>
-                    <div class="rule-punishment">⚡ Бан до 10 дней</div>
+                    <div class="rule-punishment">Бан до 10 дней</div>
                 </div>
                 
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">3.5</span> Мультиаккаунты (твинки)</div>
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <span class="rule-number">3.5</span>
+                    </div>
                     <div class="rule-text">Запрещено создание и приглашение на сервер мультиаккаунтов (твинков) без разрешения Главного Админа.</div>
-                    <div class="rule-punishment">⚡ Бан аккаунта навсегда + Бан основного аккаунта от 3 дней</div>
+                    <div class="rule-punishment">Бан аккаунта навсегда + Бан основного аккаунта от 3 дней</div>
                 </div>
             </div>
             
-            <!-- Раздел 4: Запрещенный контент и действия -->
+            <!-- Раздел 4: Запрещённый контент -->
             <div id="section4" class="rules-section">
-                <h2 class="section-title">4. Запрещенный контент и действия</h2>
+                <h2 class="section-title">4. Запрещённый контент и действия</h2>
                 
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">4.1</span> Расизм, нацизм, религия</div>
-                    <div class="rule-text">Запрещен расизм, нацизм, религиозные обсуждения/оскорбление, а также разжигание межнациональной розни и пропаганда наркотических средств, суицида.</div>
-                    <div class="rule-punishment">⚡ Бан от 10 дней + отключение чата (мут) от 15 дней</div>
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <span class="rule-number">4.1</span>
+                    </div>
+                    <div class="rule-text">Запрещены расизм, нацизм, религиозные обсуждения/оскорбления, разжигание межнациональной розни, пропаганда наркотических средств и суицида.</div>
+                    <div class="rule-punishment">Бан от 10 дней + мут от 15 дней</div>
                 </div>
                 
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">4.2</span> Названия организаций</div>
-                    <div class="rule-text">Запрещены названия организаций/кланов, которые каким-либо образом намекают на реально существующие политические наименования (пример "клан СССР" - недопустимое название).</div>
-                    <div class="rule-punishment">⚡ Штрафы + удаление организации/клана</div>
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <span class="rule-number">4.2</span>
+                    </div>
+                    <div class="rule-text">Запрещены названия организаций/кланов, намекающие на реальные политические наименования (например, "клан СССР").</div>
+                    <div class="rule-punishment">Штрафы + удаление организации/клана</div>
                 </div>
                 
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">4.3</span> Скины и символика</div>
-                    <div class="rule-text">Запрещено использование неподобающих скинов, плащей, символик, которые не соответствуют нравственным устоям и содержат в себе контент 18+.</div>
-                    <div class="rule-punishment">⚡ Бан до исправления</div>
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <span class="rule-number">4.3</span>
+                    </div>
+                    <div class="rule-text">Запрещено использование неподобающих скинов, плащей, символики, содержащих 18+ контент.</div>
+                    <div class="rule-punishment">Бан до исправления</div>
                 </div>
                 
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">4.4</span> Дюп-машины</div>
-                    <div class="rule-text">Запрещена постройка механизмов для получения ресурсов путём багов игры (например: дюп-машины), не согласованные с Администрацией.</div>
-                    <div class="rule-punishment">⚡ Бан от 7 дней + снос постройки + изъятие ресурсов</div>
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <span class="rule-number">4.4</span>
+                    </div>
+                    <div class="rule-text">Запрещена постройка механизмов для получения ресурсов через баги игры (дюп-машины) без согласования с Администрацией.</div>
+                    <div class="rule-punishment">Бан от 7 дней + снос постройки + изъятие ресурсов</div>
                 </div>
                 
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">4.5</span> Уязвимости игры</div>
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <span class="rule-number">4.5</span>
+                    </div>
                     <div class="rule-text">Запрещено пользоваться любыми уязвимостями игры.</div>
-                    <div class="rule-punishment">⚡ Бан от 3 дней</div>
+                    <div class="rule-punishment">Бан от 3 дней</div>
                 </div>
                 
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">4.6</span> Нечестно полученные ресурсы</div>
-                    <div class="rule-text">Запрещено хранение и распространение ресурсов/предметов, которые получены нечестным путем (например дюпом).</div>
-                    <div class="rule-punishment">⚡ Бан от 7 дней + изъятие ресурсов</div>
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <span class="rule-number">4.6</span>
+                    </div>
+                    <div class="rule-text">Запрещено хранение и распространение ресурсов/предметов, полученных нечестным путём (например, дюпом).</div>
+                    <div class="rule-punishment">Бан от 7 дней + изъятие ресурсов</div>
                 </div>
                 
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">4.7</span> Содействие нарушителям</div>
-                    <div class="rule-text">Запрещено содействовать нарушителям. Ресурсы/предметы, добытые нарушителем, запрещено передавать/использовать.</div>
-                    <div class="rule-punishment">⚡ Бан от 7 дней + изъятие ресурсов</div>
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <span class="rule-number">4.7</span>
+                    </div>
+                    <div class="rule-text">Запрещено содействие нарушителям. Ресурсы/предметы, добытые нарушителем, запрещено передавать/использовать.</div>
+                    <div class="rule-punishment">Бан от 7 дней + изъятие ресурсов</div>
                 </div>
             </div>
             
-            <!-- Раздел 5: Клиент и читы -->
+            <!-- Раздел 5: Читы и клиент -->
             <div id="section5" class="rules-section">
-                <h2 class="section-title">5. Клиент и читы</h2>
+                <h2 class="section-title">5. Читы и клиент</h2>
                 
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">5.1</span> SoundPad и звуки</div>
-                    <div class="rule-text">Запрещено злоупотреблять программами, которые включают различные звуки, например "SoundPad", на сервере, только если это не РП-ситуация, согласованная с администрацией.</div>
-                    <div class="rule-punishment">⚡ Штрафы + мут</div>
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <span class="rule-number">5.1</span>
+                    </div>
+                    <div class="rule-text">Запрещено злоупотреблять программами, воспроизводящими звуки (SoundPad), кроме РП-ситуаций, согласованных с администрацией.</div>
+                    <div class="rule-punishment">Штрафы + мут</div>
                 </div>
                 
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">5.2</span> Чит-клиенты</div>
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <span class="rule-number">5.2</span>
+                    </div>
                     <div class="rule-text">Запрещено пользоваться читами и чит-клиентами.</div>
-                    <div class="rule-punishment">⚡ Бан от 25 дней</div>
+                    <div class="rule-punishment">Бан от 25 дней</div>
                 </div>
                 
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">5.3</span> Проверка на читы</div>
-                    <div class="rule-text">В случае проверки на читы вы обязаны явиться на проверку, иначе команда проекта имеет право вас забанить на любой срок.</div>
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <span class="rule-number">5.3</span>
+                    </div>
+                    <div class="rule-text">В случае проверки на читы вы обязаны явиться на проверку, иначе команда проекта имеет право забанить вас на любой срок.</div>
                 </div>
                 
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">5.4</span> Подозрения в читах</div>
-                    <div class="rule-text">В случае подозрения в читах какого-либо игрока вы можете обратиться как в канал для обращений, так и в личные сообщения любого человека из команды проекта.</div>
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <span class="rule-number">5.4</span>
+                    </div>
+                    <div class="rule-text">В случае подозрения в читах игрока вы можете обратиться в канал для обращений или в личные сообщения команды проекта.</div>
                 </div>
             </div>
             
@@ -578,243 +620,161 @@
             <div id="section6" class="rules-section">
                 <h2 class="section-title">6. Чаты и общение</h2>
                 
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">6.1</span> Конфликты в чатах</div>
-                    <div class="rule-text">Запрещены какие-либо конфликты во всех чатах проекта.</div>
-                    <div class="rule-punishment">⚡ Мут / Бан от 2ч + компенсации</div>
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <span class="rule-number">6.1</span>
+                    </div>
+                    <div class="rule-text">Запрещены любые конфликты во всех чатах проекта.</div>
+                    <div class="rule-punishment">Мут / Бан от 2ч + компенсации</div>
                 </div>
                 
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">6.2</span> Капс</div>
-                    <div class="rule-text">Запрещено злоупотребление и многократное использование в короткий промежуток времени предложений, написанных БОЛЬШИМИ БУКВАМИ.</div>
-                    <div class="rule-punishment">⚡ Мут от 3ч</div>
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <span class="rule-number">6.2</span>
+                    </div>
+                    <div class="rule-text">Запрещено злоупотребление КАПСОМ.</div>
+                    <div class="rule-punishment">Мут от 3ч</div>
                 </div>
                 
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">6.3</span> Реклама</div>
-                    <div class="rule-text">Запрещено рекламировать сторонние проекты любыми способами и в любых чатах проекта.</div>
-                    <div class="rule-punishment">⚡ Мут от 24 часов</div>
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <span class="rule-number">6.3</span>
+                    </div>
+                    <div class="rule-text">Запрещено рекламировать сторонние проекты.</div>
+                    <div class="rule-punishment">Мут от 24ч</div>
                 </div>
                 
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">6.4</span> Спам</div>
-                    <div class="rule-text">Запрещено повторение однотипных сообщений в любых чатах проекта (=спам).</div>
-                    <div class="rule-punishment">⚡ Мут от 10ч</div>
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <span class="rule-number">6.4</span>
+                    </div>
+                    <div class="rule-text">Запрещён спам (повторение однотипных сообщений).</div>
+                    <div class="rule-punishment">Мут от 10ч</div>
                 </div>
                 
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">6.5</span> Попрошайничество</div>
-                    <div class="rule-text">Запрещено попрошайничество/вымогательство любых ресурсов у участников проекта.</div>
-                    <div class="rule-punishment">⚡ Мут / Бан от 2ч</div>
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <span class="rule-number">6.5</span>
+                    </div>
+                    <div class="rule-text">Запрещено попрошайничество/вымогательство ресурсов.</div>
+                    <div class="rule-punishment">Мут / Бан от 2ч</div>
                 </div>
                 
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">6.6</span> Искажение слов</div>
-                    <div class="rule-text">Запрещено злоупотребление умышленным коверканьем/искажением слов и языка, который Вы используете.</div>
-                    <div class="rule-punishment">⚡ Мут от 12ч</div>
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <span class="rule-number">6.6</span>
+                    </div>
+                    <div class="rule-text">Запрещено намеренное искажение слов и языка.</div>
+                    <div class="rule-punishment">Мут от 12ч</div>
                 </div>
                 
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">6.7</span> Упоминание родственников</div>
-                    <div class="rule-text">Запрещено упоминание родственников и других близких людей участниками проекта в плохом значении.</div>
-                    <div class="rule-punishment">⚡ Мут от 24 часов + компенсации</div>
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <span class="rule-number">6.7</span>
+                    </div>
+                    <div class="rule-text">Запрещено упоминание родственников в негативном ключе.</div>
+                    <div class="rule-punishment">Мут от 24ч + компенсации</div>
                 </div>
                 
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">6.8</span> Политика и религия в чатах</div>
-                    <div class="rule-text">Запрещено упоминание/искажение/оскорбления политики/религии/нации/флагов/стран в разговоре во всех чатах проекта.</div>
-                    <div class="rule-punishment">⚡ Мут / Бан от 10ч</div>
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <span class="rule-number">6.8</span>
+                    </div>
+                    <div class="rule-text">Запрещены обсуждения политики/религии/нации в негативном ключе.</div>
+                    <div class="rule-punishment">Мут / Бан от 10ч</div>
                 </div>
                 
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">6.9</span> Осуждение проекта</div>
-                    <div class="rule-text">Запрещены оскорбления/осуждение проекта в голосовых и текстовых чатах, а так же в профиле и статус-баре игрока. Если вы хотите что-то предложить, напишите об этом в канале для обращений.</div>
-                    <div class="rule-punishment">⚡ Бан от 7 дней</div>
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <span class="rule-number">6.9</span>
+                    </div>
+                    <div class="rule-text">Запрещены оскорбления/осуждение проекта в чатах, профиле или статус-баре.</div>
+                    <div class="rule-punishment">Бан от 7 дней</div>
                 </div>
                 
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">6.10</span> Личная информация</div>
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <span class="rule-number">6.10</span>
+                    </div>
                     <div class="rule-text">Запрещено разглашение личной информации об участнике без его согласия.</div>
-                    <div class="rule-punishment">⚡ Мут от 3 дней + компенсации</div>
+                    <div class="rule-punishment">Мут от 3 дней + компенсации</div>
                 </div>
                 
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">6.11</span> Неприемлемый контент</div>
-                    <div class="rule-text">Запрещена публикация фото/видео и другого контента неприемлемого содержания.</div>
-                    <div class="rule-punishment">⚡ Мут от 3 дней</div>
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <span class="rule-number">6.11</span>
+                    </div>
+                    <div class="rule-text">Запрещена публикация неприемлемого фото/видео контента.</div>
+                    <div class="rule-punishment">Мут от 3 дней</div>
                 </div>
                 
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">6.12</span> 18+ контент</div>
-                    <div class="rule-text">Запрещено злоупотребление обсуждением 18+ контента в любых чатах сервера.</div>
-                    <div class="rule-punishment">⚡ Мут от 3 дней</div>
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <span class="rule-number">6.12</span>
+                    </div>
+                    <div class="rule-text">Запрещено злоупотребление обсуждением 18+ контента.</div>
+                    <div class="rule-punishment">Мут от 3 дней</div>
                 </div>
                 
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">6.13</span> Шуточные оскорбления</div>
-                    <div class="rule-text">Вы можете оскорблять игрока в шуточной форме, если он не имеет ничего против. Если Вы считаете оскорбление слишком жёстким, Вы можете обратиться в канал для обращений.</div>
-                    <div class="rule-punishment">⚡ Мут от 3 дней + компенсации</div>
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <span class="rule-number">6.13</span>
+                    </div>
+                    <div class="rule-text">Шуточные оскорбления допустимы, если оппонент не против. В случае негативного воздействия:</div>
+                    <div class="rule-punishment">Мут от 3 дней + компенсации</div>
                 </div>
                 
                 <div class="rule-note">
-                    <strong>Пометка:</strong> политические высказывания/взгляды/выражения/символы относительно реального мира, а не сервера Minecraft. Высказывания относительно политики стран игрового мира на сервере разрешены, но без злоупотребления.
+                    Если вы хотите что-то предложить, напишите об этом в канале для обращений.
                 </div>
             </div>
             
-            <!-- Раздел 7: Фракции -->
-            <div id="section7" class="rules-section">
-                <h2 class="section-title">7. Фракции</h2>
-                
-                <div class="rule-item rule-highlight">
-                    <div class="rule-title"><span class="rule-number">7.1.1</span> Территория Волшебников</div>
-                    <div class="rule-text">Территория от -4000 до 0 по координате Х принадлежит фракции Волшебников.</div>
-                </div>
-                
-                <div class="rule-item rule-highlight">
-                    <div class="rule-title"><span class="rule-number">7.1.2</span> Территория Техников</div>
-                    <div class="rule-text">Территория от 0 до 4000 по координате Х принадлежит фракции Техников.</div>
-                </div>
-                
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">7.2</span> Убийства внутри фракции</div>
-                    <div class="rule-text">Игрокам одной фракции запрещено убивать друг друга.</div>
-                    <div class="rule-punishment">⚡ Наказания в соответствии с п. 3.2</div>
-                </div>
-                
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">7.3.1</span> Убийства на своей территории</div>
-                    <div class="rule-text">Игроки одной фракции могут безнаказанно убивать игроков другой фракции, в случае, если игроки другой фракции вторглись на территорию первой фракции.</div>
-                    <div class="rule-note">Пример: Фракция А вторглась на территорию фракции Б. Игроки Б не будут наказаны за убийства игроков фракции А, если они были убиты на территории фракции Б.</div>
-                </div>
-                
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">7.3.2</span> Ресурсы поверженных</div>
-                    <div class="rule-text">Игроки одной фракции могут безнаказанно забрать ресурсы поверженного игрока другой фракции, в случае если он был убит на территории первой фракции.</div>
-                </div>
-                
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">7.3.3</span> Убийства на чужой территории</div>
-                    <div class="rule-text">Игрокам одной фракции запрещено убивать игроков другой фракции, если те находятся на своей территории.</div>
-                    <div class="rule-note">Пример: Игрок фракции Б убил игрока фракции А на территории фракции А.</div>
-                    <div class="rule-punishment">⚡ Наказания в соответствии с п. 3.2</div>
-                </div>
-                
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">7.4.1</span> Запрет для Волшебников</div>
-                    <div class="rule-text">Игрокам Фракции Волшебников запрещено крафтить, использовать и хранить любые ресурсы из модов Create, Mekanism, TacZ, Superb Warfare и их дополнений, а так же пользоваться любыми технологиями из этих модов. (Например: порталы, сварп-свитки)</div>
-                    <div class="rule-punishment">⚡ Изъятие ресурсов и бан на 3 дня</div>
-                </div>
-                
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">7.4.2</span> Запрет для Техников</div>
-                    <div class="rule-text">Игрокам Фракции Техников запрещено крафтить, использовать и хранить любые ресурсы из модов Hex Casting, Ars Nouveau, Iron's Spells 'n Spellbooks, Mahou Tsukai, Botania, Enigmatic Legacy и их дополнений, а так же пользоваться любыми технологиями из этих модов. (Например: порталы, сварп-свитки).</div>
-                    <div class="rule-punishment">⚡ Изъятие ресурсов и бан на 3 дня</div>
-                </div>
-                
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">7.4.3</span> Хранилище вражеских технологий</div>
-                    <div class="rule-text">Каждой Фракции разрешено построить строение "Хранилище Вражеских Технологий" на территории своей столицы. Только в этом месте можно хранить ресурсы вражеской фракции.</div>
-                </div>
-                
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">7.5.1</span> Столица фракции</div>
-                    <div class="rule-text">Столица фракции находится в том же месте, где станция, куда приезжает поезд со спавна.</div>
-                </div>
-                
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">7.5.2</span> Перенос столицы</div>
-                    <div class="rule-text">Столица фракции не может быть перенесена в другое место.</div>
-                </div>
-                
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">7.5.3</span> Размеры столицы</div>
-                    <div class="rule-text">Столица фракции имеет размеры в 200 блоков от центра. От 200 до 600 блоков от центра столицы - округ столицы.</div>
-                </div>
-                
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">7.5.4</span> Размещение домов</div>
-                    <div class="rule-text">Игроки могут построить свои дома только в пределах столицы и округа столицы.</div>
-                </div>
-                
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">7.5.5</span> Создание поселений</div>
-                    <div class="rule-text">Игроки могут создать собственное поселение. Для этого требуется минимум 2 игрока. Поселение имеет размеры 200 на 200 блоков. Поселение должно иметь название и аббревиатуру из 2 букв. Заявку на создание поселения игроки пишут Правителю фракции. Неизвестные постройки могут быть полноправно снесены Правителем фракции.</div>
-                </div>
-                
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">7.5.6</span> Прописка игроков</div>
-                    <div class="rule-text">Игрок может быть прописан и жить только в одном поселении или столице.</div>
-                </div>
-                
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">7.5.7</span> Название столицы</div>
-                    <div class="rule-text">Столица имеет название и аббревиатуру из 4 букв, установленных Правителем фракции.</div>
-                </div>
-                
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">7.6</span> Выбор Правителя</div>
-                    <div class="rule-text">Правитель фракции избирается большинством голосовавших на первом собрании фракции.</div>
-                </div>
-                
-                <div class="rule-item rule-highlight">
-                    <div class="rule-title"><span class="rule-number">7.7</span> Спавн - нейтральная территория</div>
-                    <div class="rule-text">Спавн - нейтральная территория. На ней запрещены любые убийства. Там можно устраивать переговоры (в зале переговоров) или просто отдыхать. Территория спавна обозначена специальным забором.</div>
-                    <div class="rule-punishment">⚡ Наказания в соответствии с п. 3.2 и 2.1</div>
-                </div>
-                
-                <div class="rule-item">
-                    <div class="rule-title"><span class="rule-number">7.8.1</span> Исключение для Волшебников</div>
-                    <div class="rule-text">Фракция Волшебников может воспользоваться поездами, которые ходят от спавна до столиц фракций.</div>
-                </div>
-            </div>
         </div>
     </div>
 
-    <!-- ПОДВАЛ (компактный, как на фото) -->
-<footer style="background: rgba(10, 15, 25, 0.9); backdrop-filter: blur(10px); border-top: 1px solid rgba(122, 162, 247, 0.2); padding: 40px 0; margin-top: 80px; width: 100%;">
-    <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
-        
-        <!-- Три колонки в ряд -->
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 30px;">
-            
-            <!-- Колонка 1: СЕРВЕР -->
-            <div style="flex: 1; min-width: 200px;">
-                <h3 style="color: #7aa2f7; font-size: 18px; margin-bottom: 15px; font-weight: 600;">СЕРВЕР</h3>
-                <div style="color: #8f9bb5; font-size: 13px;">Адрес:</div>
-                <div style="color: white; font-size: 16px; font-weight: 500; background: rgba(122, 162, 247, 0.1); padding: 6px 12px; border-radius: 8px; display: inline-block; margin: 5px 0;">217.60.245.57:27569</div>
-                <div style="color: #8f9bb5; font-size: 13px; margin-top: 10px;">Версия:</div>
-                <div style="color: white; font-size: 15px;">1.20.1 <span style="color: #8f9bb5;">(Forge)</span></div>
-            </div>
-            
-            <!-- Колонка 2: СТРАНИЦЫ -->
-            <div style="flex: 1; min-width: 200px; text-align: center;">
-                <h3 style="color: #7aa2f7; font-size: 18px; margin-bottom: 15px; font-weight: 600;">СТРАНИЦЫ</h3>
-                <div style="display: flex; flex-direction: column; gap: 8px;">
-                    <a href="index.html" style="color: #b1c3df; text-decoration: none; font-size: 14px;">Главная</a>
-                    <a href="news.html" style="color: #b1c3df; text-decoration: none; font-size: 14px;">Новости</a>
-                    <a href="donate.html" style="color: #b1c3df; text-decoration: none; font-size: 14px;">Донат</a>
-                    <a href="rules.html" style="color: #b1c3df; text-decoration: none; font-size: 14px;">Правила</a>
-                    <a href="wiki.html" style="color: #b1c3df; text-decoration: none; font-size: 14px;">Вики</a>
+    <!-- ПОДВАЛ -->
+    <footer style="background: rgba(10, 15, 25, 0.9); backdrop-filter: blur(10px); border-top: 1px solid rgba(122, 162, 247, 0.2); padding: 40px 0; margin-top: 80px; width: 100%;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 30px;">
+                
+                <!-- СЕРВЕР -->
+                <div style="flex: 1; min-width: 200px;">
+                    <h3 style="color: #7aa2f7; font-size: 18px; margin-bottom: 15px; font-weight: 600;">СЕРВЕР</h3>
+                    <div style="color: #8f9bb5; font-size: 13px;">Адрес:</div>
+                    <div style="color: white; font-size: 16px; font-weight: 500; background: rgba(122, 162, 247, 0.1); padding: 6px 12px; border-radius: 8px; display: inline-block; margin: 5px 0;">217.60.245.57:27569</div>
+                    <div style="color: #8f9bb5; font-size: 13px; margin-top: 10px;">Версия:</div>
+                    <div style="color: white; font-size: 15px;">1.20.1 <span style="color: #8f9bb5;">Forge</span></div>
                 </div>
-            </div>
-            
-            <!-- Колонка 3: СОЦСЕТИ -->
-            <div style="flex: 1; min-width: 200px; text-align: right;">
-                <h3 style="color: #7aa2f7; font-size: 18px; margin-bottom: 15px; font-weight: 600;">МЫ В СОЦСЕТЯХ</h3>
-                <a href="https://discord.gg/UCfqjw3RBe" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: #5865F2; color: white; text-decoration: none; padding: 8px 20px; border-radius: 30px; font-size: 14px; margin-bottom: 15px;">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
-                        <path d="M19.27 5.33C17.94 4.71 16.5 4.26 15 4C14.86 4.28 14.7 4.68 14.59 5C13.02 4.77 11.48 4.77 9.94 5C9.83 4.68 9.66 4.28 9.52 4C8.01 4.27 6.57 4.72 5.23 5.34C2.73 9.02 2.03 12.61 2.36 16.15C4.1 17.43 5.8 18.16 7.47 18.62C7.97 17.94 8.42 17.21 8.79 16.45C8.06 16.13 7.38 15.75 6.74 15.33C6.91 15.21 7.07 15.08 7.23 14.95C10.11 16.34 13.32 16.34 16.18 14.95C16.34 15.08 16.5 15.21 16.68 15.33C16.04 15.76 15.36 16.14 14.62 16.45C14.99 17.21 15.44 17.94 15.94 18.62C17.61 18.16 19.32 17.43 21.05 16.15C21.43 12.09 20.33 8.53 19.27 5.33ZM8.58 13.99C7.62 13.99 6.83 13.09 6.83 11.99C6.83 10.89 7.6 9.99 8.58 9.99C9.57 9.99 10.34 10.9 10.33 11.99C10.33 13.09 9.56 13.99 8.58 13.99ZM15.42 13.99C14.46 13.99 13.67 13.09 13.67 11.99C13.67 10.89 14.44 9.99 15.42 9.99C16.41 9.99 17.18 10.9 17.17 11.99C17.17 13.09 16.4 13.99 15.42 13.99Z"/>
-                    </svg>
-                    Discord
-                </a>
-                <div style="color: #8f9bb5; font-size: 12px;">
-                    <p>Правила сервера</p>
-                    <p>© 2026 TechnoStone</p>
+                
+                <!-- СТРАНИЦЫ -->
+                <div style="flex: 1; min-width: 200px; text-align: center;">
+                    <h3 style="color: #7aa2f7; font-size: 18px; margin-bottom: 15px; font-weight: 600;">СТРАНИЦЫ</h3>
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        <a href="index.html" style="color: #b1c3df; text-decoration: none; font-size: 14px;">Главная</a>
+                        <a href="news.html" style="color: #b1c3df; text-decoration: none; font-size: 14px;">Новости</a>
+                        <a href="donate.html" style="color: #b1c3df; text-decoration: none; font-size: 14px;">Донат</a>
+                        <a href="rules.html" style="color: #b1c3df; text-decoration: none; font-size: 14px;">Правила</a>
+                        <a href="wiki.html" style="color: #b1c3df; text-decoration: none; font-size: 14px;">Вики</a>
+                    </div>
+                </div>
+                
+                <!-- СОЦСЕТИ -->
+                <div style="flex: 1; min-width: 200px; text-align: right;">
+                    <h3 style="color: #7aa2f7; font-size: 18px; margin-bottom: 15px; font-weight: 600;">МЫ В СОЦСЕТЯХ</h3>
+                    <a href="https://discord.gg/UCfqjw3RBe" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: #5865F2; color: white; text-decoration: none; padding: 8px 20px; border-radius: 30px; font-size: 14px; margin-bottom: 15px;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
+                            <path d="M19.27 5.33C17.94 4.71 16.5 4.26 15 4C14.86 4.28 14.7 4.68 14.59 5C13.02 4.77 11.48 4.77 9.94 5C9.83 4.68 9.66 4.28 9.52 4C8.01 4.27 6.57 4.72 5.23 5.34C2.73 9.02 2.03 12.61 2.36 16.15C4.1 17.43 5.8 18.16 7.47 18.62C7.97 17.94 8.42 17.21 8.79 16.45C8.06 16.13 7.38 15.75 6.74 15.33C6.91 15.21 7.07 15.08 7.23 14.95C10.11 16.34 13.32 16.34 16.18 14.95C16.34 15.08 16.5 15.21 16.68 15.33C16.04 15.76 15.36 16.14 14.62 16.45C14.99 17.21 15.44 17.94 15.94 18.62C17.61 18.16 19.32 17.43 21.05 16.15C21.43 12.09 20.33 8.53 19.27 5.33ZM8.58 13.99C7.62 13.99 6.83 13.09 6.83 11.99C6.83 10.89 7.6 9.99 8.58 9.99C9.57 9.99 10.34 10.9 10.33 11.99C10.33 13.09 9.56 13.99 8.58 13.99ZM15.42 13.99C14.46 13.99 13.67 13.09 13.67 11.99C13.67 10.89 14.44 9.99 15.42 9.99C16.41 9.99 17.18 10.9 17.17 11.99C17.17 13.09 16.4 13.99 15.42 13.99Z"/>
+                        </svg>
+                        Discord
+                    </a>
+                    <div style="color: #8f9bb5; font-size: 12px;">
+                        <p>Правила сервера</p>
+                        <p>© 2026 TechnoStone</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</footer>
+    </footer>
 
     <script>
         function createParticles() {
