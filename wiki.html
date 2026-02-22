@@ -252,6 +252,64 @@
             border-color: rgba(255, 200, 87, 0.3);
         }
         
+        .wiki-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(122, 162, 247, 0.15);
+            border: 1px solid rgba(122, 162, 247, 0.3);
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin: 10px 0;
+        }
+        
+        .wiki-button:hover {
+            background: rgba(122, 162, 247, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(122, 162, 247, 0.2);
+        }
+        
+        .wiki-button.download {
+            background: rgba(67, 181, 129, 0.15);
+            border-color: rgba(67, 181, 129, 0.3);
+        }
+        
+        .wiki-button.download:hover {
+            background: rgba(67, 181, 129, 0.3);
+        }
+        
+        .server-ip-box {
+            background: rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(122, 162, 247, 0.3);
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .server-ip {
+            font-size: 24px;
+            font-weight: 700;
+            color: #7aa2f7;
+            font-family: monospace;
+            letter-spacing: 1px;
+        }
+        
+        .server-version {
+            background: rgba(122, 162, 247, 0.1);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 16px;
+        }
+        
         .restart-times {
             display: flex;
             gap: 15px;
@@ -319,6 +377,10 @@
             .section-title {
                 font-size: 24px;
             }
+            
+            .server-ip {
+                font-size: 20px;
+            }
         }
     </style>
 </head>
@@ -352,6 +414,44 @@
                 <p><strong>Здравствуй, путник!</strong> Теперь ты верифицирован! Значит теперь для тебя доступно больше информации! Тут собрано всё самое полезное. Но на всякий случай здесь описана информация, которую ты уже знаешь. Обращайся к ней в любой удобный момент!</p>
             </div>
             
+            <!-- НОВЫЙ РАЗДЕЛ: Подготовка к игре -->
+            <div class="wiki-section">
+                <h2 class="section-title">Подготовка к игре</h2>
+                
+                <!-- IP сервера -->
+                <div class="subsection-title">🌐 IP сервера</div>
+                <div class="server-ip-box">
+                    <div class="server-ip">217.60.245.57:27569</div>
+                    <div class="server-version">Версия 1.20.1 Forge</div>
+                </div>
+                
+                <!-- Сборка -->
+                <div class="subsection-title">📦 Актуальная сборка</div>
+                <div class="wiki-text">
+                    Скачай готовую сборку модов и запускай игру без лишних проблем:
+                </div>
+                <a href="https://drive.google.com/file/d/12_cXt0a32zLPRHUqpIH4gsLqg7u4-Uu_/view?usp=drive_link" target="_blank" class="wiki-button download">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    Скачать сборку (TS-v.2.0.zip)
+                </a>
+                
+                <!-- Ресурспак (заглушка, если ссылка появится) -->
+                <!--
+                <div class="subsection-title">🎨 Рекомендуемый ресурспак</div>
+                <a href="ССЫЛКА_НА_РЕСУРСПАК" target="_blank" class="wiki-button">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4h16v16H4z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                    Скачать ресурспак
+                </a>
+                -->
+            </div>
+            
             <!-- Раздел 1: Что такое TechnoStone? -->
             <div class="wiki-section">
                 <h2 class="section-title">Что такое TechnoStone?</h2>
@@ -374,7 +474,7 @@
                 </div>
             </div>
             
-            <!-- Раздел 2: Правила и администрация -->
+            <!-- Раздел 2: Правила и администрация (сокращённо, т.к. есть отдельная страница) -->
             <div class="wiki-section">
                 <h2 class="section-title">Правила и администрация</h2>
                 
@@ -382,12 +482,9 @@
                     Каждый новопришедший человек автоматически подтверждает свою ознакомленность и полное согласие с данным сводом правил в таком виде, в каком они есть, учитывая все изменения и нововведения.
                 </div>
                 
-                <ul class="wiki-list">
-                    <li>Лица, представляющие команду проекта, вправе заблокировать участника без разъяснения причин или доказательного обвинения (но обычно описывают причину).</li>
-                    <li>Участник проекта может получить блокировку за нарушение, не входящее в свод правил. Знайте правила — и у вас будет меньше проблем!</li>
-                    <li>Администрация имеет право в любой момент без оповещения изменить свод правил.</li>
-                    <li>Данный свод правил не распространяется на Администрацию, за исключением ролей <span class="wiki-tag">@⚒︎ ┇ Модератор</span> и <span class="wiki-tag">@⚔ ┇ Стажëр</span>.</li>
-                </ul>
+                <div class="wiki-text">
+                    Полный список правил — на странице <a href="rules.html" style="color: #7aa2f7;">Правила</a>.
+                </div>
                 
                 <div class="wiki-highlight">
                     <strong>Администрация</strong> состоит из людей с ролью <span class="wiki-tag purple">@✔ ┇ Команда проекта</span>.
@@ -499,7 +596,7 @@
         </div>
     </div>
 
-  <!-- ПОДВАЛ -->
+    <!-- ПОДВАЛ -->
     <footer style="background: rgba(10, 15, 25, 0.9); backdrop-filter: blur(10px); border-top: 1px solid rgba(122, 162, 247, 0.2); padding: 40px 0; margin-top: 80px; width: 100%;">
         <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
             <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 30px;">
